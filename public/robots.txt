@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://glaubern8n01.github.io/contabilita/sitemap.xml
