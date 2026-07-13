@@ -1,2 +1,2 @@
 import { defineConfig } from 'vite';
-export default defineConfig({ base: '/contabilita-site/' });
+export default defineConfig({ base: './' });

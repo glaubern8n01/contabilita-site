@@ -1,6 +1,7 @@
 import './brand-refresh.css';
+import './tracking.js';
 
-const base = '/contabilita-site/';
+const base = import.meta.env.BASE_URL;
 const brandLabel = 'Contabilita Assessoria Contábil';
 
 document.querySelectorAll('.brand').forEach((brand) => {
@@ -27,3 +28,22 @@ if (footerInfo) {
 document.querySelectorAll('a[href^="/contabilita/"]').forEach((link) => {
   link.href = link.getAttribute('href').replace('/contabilita/', base);
 });
+
+const businessType = document.querySelector('select[name="tipo"]');
+if (businessType) {
+  const options = [
+    ['', 'Selecione'],
+    ['MEI', 'MEI'],
+    ['Simples Nacional', 'Simples Nacional'],
+    ['Lucro Presumido', 'Lucro Presumido'],
+    ['Lucro Real', 'Lucro Real'],
+    ['Ainda não tenho CNPJ', 'Ainda não tenho CNPJ'],
+  ];
+
+  businessType.replaceChildren(...options.map(([value, label]) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = label;
+    return option;
+  }));
+}
