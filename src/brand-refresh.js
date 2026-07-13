@@ -6,12 +6,12 @@ const brandLabel = 'Contabilita Assessoria Contábil';
 document.querySelectorAll('.brand').forEach((brand) => {
   const isFooter = Boolean(brand.closest('footer'));
   brand.setAttribute('aria-label', `${brandLabel} — início`);
-  brand.innerHTML = `<img src="${base}${isFooter ? 'logo-horizontal-white.svg' : 'logo-horizontal.svg'}" alt="${brandLabel}">`;
+  brand.innerHTML = `<img src="${base}${isFooter ? 'logo-official-dark.png' : 'logo-official-light.png'}" alt="${brandLabel}">`;
 });
 
 const heroPanel = document.querySelector('.hero aside');
 if (heroPanel) {
-  heroPanel.insertAdjacentHTML('afterbegin', `<img class="brand-watermark" src="${base}logo-symbol.svg" alt="" aria-hidden="true">`);
+  heroPanel.insertAdjacentHTML('afterbegin', `<img class="brand-watermark" src="${base}logo-official-symbol.png" alt="" aria-hidden="true">`);
 }
 
 const contactLocation = document.querySelector('.contact > div > p:last-of-type');
