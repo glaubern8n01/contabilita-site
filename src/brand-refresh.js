@@ -32,7 +32,7 @@ if (contactPhone) {
   contactPhone.insertAdjacentHTML('afterend', `<a class="instagram-link" href="${instagramUrl}" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Contabilita, abre em nova aba">@contabilitacont</a>`);
 }
 
-const footerLinks = document.querySelector('footer > p:not(.copy):last-of-type');
+const footerLinks = Array.from(document.querySelectorAll('footer > p:not(.copy)')).find((paragraph) => paragraph !== footerInfo);
 if (footerLinks && footerLinks !== footerInfo) {
   footerLinks.insertAdjacentHTML('beforeend', `<br><a href="${base}cookies.html">Cookies</a><br><a href="${base}termos.html">Termos de Uso</a><br><a href="${instagramUrl}" target="_blank" rel="noopener noreferrer">Instagram · @contabilitacont</a>`);
 }
