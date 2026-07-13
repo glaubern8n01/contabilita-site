@@ -25,6 +25,17 @@ if (footerInfo) {
   footerInfo.innerHTML = 'CRC ES-024461<br><a href="tel:+5528999141153">(28) 99914-1153</a><br>Rua Pedro Vargas, nº 82<br>Waldir Furtado Amorim<br>CEP 29313-780 · Cachoeiro de Itapemirim — ES';
 }
 
+const instagramUrl = 'https://www.instagram.com/contabilitacont/';
+const contactPhone = document.querySelector('.contact > div > a[href^="tel:"]');
+if (contactPhone) {
+  contactPhone.insertAdjacentHTML('afterend', `<a class="instagram-link" href="${instagramUrl}" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Contabilita, abre em nova aba">@contabilitacont</a>`);
+}
+
+const footerLinks = document.querySelector('footer > p:not(.copy):last-of-type');
+if (footerLinks && footerLinks !== footerInfo) {
+  footerLinks.insertAdjacentHTML('beforeend', `<br><a href="${instagramUrl}" target="_blank" rel="noopener noreferrer">Instagram · @contabilitacont</a>`);
+}
+
 document.querySelectorAll('a[href^="/contabilita/"]').forEach((link) => {
   link.href = link.getAttribute('href').replace('/contabilita/', base);
 });
