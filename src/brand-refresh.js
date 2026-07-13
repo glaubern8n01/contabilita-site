@@ -3,6 +3,7 @@ import './tracking.js';
 
 const base = import.meta.env.BASE_URL;
 const brandLabel = 'Contabilita Assessoria Contábil';
+const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=Rua%20Pedro%20Vargas%2C%2082%2C%20Waldir%20Furtado%20Amorim%2C%20Cachoeiro%20de%20Itapemirim%20-%20ES%2C%2029313-780';
 
 document.querySelectorAll('.brand').forEach((brand) => {
   const isFooter = Boolean(brand.closest('footer'));
@@ -17,12 +18,12 @@ if (heroPanel) {
 
 const contactLocation = document.querySelector('.contact > div > p:last-of-type');
 if (contactLocation) {
-  contactLocation.innerHTML = '<strong>Rua Pedro Vargas, nº 82</strong><br>Bairro Waldir Furtado Amorim<br>CEP 29313-780 · Cachoeiro de Itapemirim — ES';
+  contactLocation.innerHTML = `<a class="map-link" href="${mapsUrl}" target="_blank" rel="noopener noreferrer" aria-label="Abrir endereço da Contabilita no Google Maps"><strong>Rua Pedro Vargas, nº 82</strong><br>Bairro Waldir Furtado Amorim<br>CEP 29313-780 · Cachoeiro de Itapemirim — ES<br><span>Ver no Google Maps ↗</span></a>`;
 }
 
 const footerInfo = document.querySelector('footer > p:not(.copy)');
 if (footerInfo) {
-  footerInfo.innerHTML = 'CRC ES-024461<br><a href="tel:+5528999141153">(28) 99914-1153</a><br>Rua Pedro Vargas, nº 82<br>Waldir Furtado Amorim<br>CEP 29313-780 · Cachoeiro de Itapemirim — ES';
+  footerInfo.innerHTML = `CRC ES-024461<br><a href="tel:+5528999141153">(28) 99914-1153</a><br><a class="map-link" href="${mapsUrl}" target="_blank" rel="noopener noreferrer">Rua Pedro Vargas, nº 82<br>Waldir Furtado Amorim<br>CEP 29313-780 · Cachoeiro de Itapemirim — ES ↗</a>`;
 }
 
 const instagramUrl = 'https://www.instagram.com/contabilitacont/';
