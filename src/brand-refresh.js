@@ -33,7 +33,7 @@ if (contactPhone) {
 
 const footerLinks = document.querySelector('footer > p:not(.copy):last-of-type');
 if (footerLinks && footerLinks !== footerInfo) {
-  footerLinks.insertAdjacentHTML('beforeend', `<br><a href="${instagramUrl}" target="_blank" rel="noopener noreferrer">Instagram · @contabilitacont</a>`);
+  footerLinks.insertAdjacentHTML('beforeend', `<br><a href="${base}cookies.html">Cookies</a><br><a href="${base}termos.html">Termos de Uso</a><br><a href="${instagramUrl}" target="_blank" rel="noopener noreferrer">Instagram · @contabilitacont</a>`);
 }
 
 document.querySelectorAll('a[href^="/contabilita/"]').forEach((link) => {

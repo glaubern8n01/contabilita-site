@@ -1,7 +1,7 @@
 const metaPixelId = import.meta.env.VITE_META_PIXEL_ID?.trim();
 const googleTagId = import.meta.env.VITE_GOOGLE_TAG_ID?.trim();
 const consentKey = 'contabilita_tracking_consent';
-const privacyUrl = `${import.meta.env.BASE_URL}privacidade.html`;
+const privacyUrl = `${import.meta.env.BASE_URL}cookies.html`;
 
 const validMetaPixelId = /^\d{5,25}$/.test(metaPixelId || '');
 const validGoogleTagId = /^(G|AW)-[A-Z0-9]+$/.test(googleTagId || '');
