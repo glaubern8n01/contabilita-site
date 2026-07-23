@@ -8,6 +8,7 @@ O repositório contém três aplicações independentes:
 | Landing page | `landing/` | `npm run build --prefix landing` | `diagnostico` ou `comece` |
 | Funil de formulário | `funil/` | `npm run build --prefix funil` | `form` ou `atendimento` |
 | Formulário interativo | `forms/` | `npm run build --prefix forms` | `forms` |
+| CRM local | `crm/` | `npm run build --prefix crm` | `crm` |
 
 Cada aplicação gera sua própria pasta `dist` e pode ser conectada separadamente a uma hospedagem.
 

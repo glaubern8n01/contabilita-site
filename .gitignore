@@ -3,6 +3,7 @@ dist/
 landing/dist/
 funil/dist/
 forms/dist/
+crm/dist/
 .env
 .env.*
 !.env.example

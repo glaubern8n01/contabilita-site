@@ -1,0 +1,30 @@
+import'./style.css';
+const KEY='contabilita_crm_leads_v1',stages=[['novo','Novos'],['contato','Em contato'],['proposta','Propostas'],['cliente','Clientes'],['perdido','Perdidos']],labels=Object.fromEntries(stages);
+let leads=JSON.parse(localStorage.getItem(KEY)||'[]'),view='pipeline';
+const $=s=>document.querySelector(s),save=()=>localStorage.setItem(KEY,JSON.stringify(leads)),today=()=>new Date().toISOString().slice(0,10);
+const clean=v=>String(v||'').replace(/[<>]/g,'').trim().slice(0,800),escape=v=>clean(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+function filtered(){const q=$('#search').value.toLowerCase(),f=$('#filter').value;return leads.filter(l=>(!f||l.status===f)&&(!q||[l.nome,l.telefone,l.interesse,l.email].join(' ').toLowerCase().includes(q)))}
+function card(l){return`<article class="lead-card" data-id="${l.id}"><div><span class="avatar">${escape(l.nome).charAt(0).toUpperCase()}</span><strong>${escape(l.nome)}</strong></div><p>${escape(l.interesse)}</p><small>${escape(l.telefone)}</small>${l.followup?`<time class="${l.followup<=today()?'due':''}">◷ ${new Date(`${l.followup}T12:00`).toLocaleDateString('pt-BR')}</time>`:''}</article>`}
+function render(){
+  const list=filtered(),won=leads.filter(l=>l.status==='cliente').length,closed=won+leads.filter(l=>l.status==='perdido').length;
+  $('#metric-active').textContent=leads.filter(l=>!['cliente','perdido'].includes(l.status)).length;$('#metric-proposals').textContent=leads.filter(l=>l.status==='proposta').length;$('#metric-conversion').textContent=closed?`${Math.round(won/closed*100)}%`:'0%';$('#metric-today').textContent=leads.filter(l=>l.followup===today()&&!['cliente','perdido'].includes(l.status)).length;
+  $('#pipeline').innerHTML=stages.map(([id,label])=>`<div class="column" data-stage="${id}"><header><h3>${label}</h3><span>${list.filter(l=>l.status===id).length}</span></header><div>${list.filter(l=>l.status===id).map(card).join('')}</div></div>`).join('');
+  $('#lead-rows').innerHTML=list.map(l=>`<tr data-id="${l.id}"><td><strong>${escape(l.nome)}</strong><small>${escape(l.telefone)}</small></td><td>${escape(l.interesse)}</td><td><span class="status ${l.status}">${labels[l.status]}</span></td><td>${l.followup?new Date(`${l.followup}T12:00`).toLocaleDateString('pt-BR'):'—'}</td><td>›</td></tr>`).join('');
+  const follows=list.filter(l=>l.followup).sort((a,b)=>a.followup.localeCompare(b.followup));$('#followups').innerHTML=follows.length?follows.map(l=>`<article data-id="${l.id}"><time class="${l.followup<=today()?'due':''}">${new Date(`${l.followup}T12:00`).toLocaleDateString('pt-BR')}</time><div><strong>${escape(l.nome)}</strong><p>${escape(l.interesse)} · ${escape(l.telefone)}</p></div><span class="status ${l.status}">${labels[l.status]}</span></article>`).join(''):'';
+  const empty=!list.length;$('#empty').hidden=!empty;$('#pipeline').hidden=view!=='pipeline'||empty;$('#leads').hidden=view!=='leads'||empty;$('#followups').hidden=view!=='followups'||empty;
+}
+function openLead(id){
+  const f=$('#lead-form');f.reset();const l=leads.find(x=>x.id===id);$('#dialog-title').textContent=l?'Editar lead':'Novo lead';$('#delete').hidden=!l;
+  if(l)Object.entries(l).forEach(([k,v])=>{if(f.elements[k])f.elements[k].value=v});
+  $('#lead-dialog').showModal();setTimeout(()=>f.nome.focus(),50);
+}
+function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),2200)}
+$('#new-lead').onclick=$('#empty-new').onclick=()=>openLead();document.querySelectorAll('.close').forEach(b=>b.onclick=()=>$('#lead-dialog').close());
+$('#lead-form').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.currentTarget)),lead={id:d.id||crypto.randomUUID(),nome:clean(d.nome),telefone:clean(d.telefone),email:clean(d.email),cidade:clean(d.cidade),interesse:clean(d.interesse),status:d.status,followup:d.followup,origem:clean(d.origem),notas:clean(d.notas),created_at:leads.find(l=>l.id===d.id)?.created_at||new Date().toISOString()};const i=leads.findIndex(l=>l.id===lead.id);i>=0?leads[i]=lead:leads.unshift(lead);save();render();$('#lead-dialog').close();toast('Lead salvo com sucesso')};
+$('#delete').onclick=()=>{const id=$('#lead-form').id.value;if(id&&confirm('Excluir este lead?')){leads=leads.filter(l=>l.id!==id);save();render();$('#lead-dialog').close();toast('Lead excluído')}};
+document.addEventListener('click',e=>{const item=e.target.closest('[data-id]');if(item)openLead(item.dataset.id)});
+document.querySelectorAll('aside nav button').forEach(b=>b.onclick=()=>{view=b.dataset.view;document.querySelectorAll('aside nav button').forEach(x=>x.classList.toggle('active',x===b));$('#view-title').textContent={pipeline:'Pipeline comercial',leads:'Todos os leads',followups:'Agenda de follow-ups'}[view];render()});
+$('#search').oninput=$('#filter').onchange=render;
+$('#demo').onclick=()=>{if(leads.length&&!confirm('Adicionar contatos de exemplo junto aos atuais?'))return;const d=today();leads.push({id:crypto.randomUUID(),nome:'Marina Alves',telefone:'(28) 99912-3456',email:'marina@exemplo.com',cidade:'Cachoeiro de Itapemirim',interesse:'Abrir empresa',status:'novo',followup:d,origem:'Formulário',notas:'Quer abrir empresa de serviços.',created_at:new Date().toISOString()},{id:crypto.randomUUID(),nome:'Carlos Mendes',telefone:'(28) 99876-5432',email:'',cidade:'Vila Velha',interesse:'Trocar de contador',status:'proposta',followup:'',origem:'Indicação',notas:'Proposta enviada.',created_at:new Date().toISOString()});save();render();toast('Exemplos adicionados')};
+$('#export').onclick=()=>{const head=['Nome','WhatsApp','E-mail','Cidade','Interesse','Etapa','Follow-up','Origem','Notas'],rows=leads.map(l=>[l.nome,l.telefone,l.email,l.cidade,l.interesse,labels[l.status],l.followup,l.origem,l.notas]);const csv=[head,...rows].map(r=>r.map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(';')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`contabilita-leads-${today()}.csv`;a.click();URL.revokeObjectURL(a.href)};
+render();

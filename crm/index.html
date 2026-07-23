@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CRM | Contabilita</title><meta name="theme-color" content="#070d2b"><link rel="icon" href="./logo-official-symbol.png"></head>
+<body>
+<div class="app">
+  <aside>
+    <img src="./logo-official-dark.png" alt="Contabilita Assessoria Contábil">
+    <nav><button class="active" data-view="pipeline">◫ <span>Pipeline</span></button><button data-view="leads">☷ <span>Todos os leads</span></button><button data-view="followups">◷ <span>Follow-ups</span></button></nav>
+    <div class="storage"><b>CRM local</b><span>Dados salvos neste navegador</span></div>
+  </aside>
+  <main>
+    <header><div><p>CONTABILITA CRM</p><h1 id="view-title">Pipeline comercial</h1></div><div class="actions"><button class="ghost" id="export">Exportar CSV</button><button class="primary" id="new-lead">+ Novo lead</button></div></header>
+    <section class="metrics"><article><span>Leads ativos</span><strong id="metric-active">0</strong></article><article><span>Propostas abertas</span><strong id="metric-proposals">0</strong></article><article><span>Conversão</span><strong id="metric-conversion">0%</strong></article><article><span>Follow-ups hoje</span><strong id="metric-today">0</strong></article></section>
+    <section class="toolbar"><label>⌕<input id="search" type="search" placeholder="Buscar nome, telefone ou interesse"></label><select id="filter"><option value="">Todas as etapas</option><option value="novo">Novo</option><option value="contato">Em contato</option><option value="proposta">Proposta</option><option value="cliente">Cliente</option><option value="perdido">Perdido</option></select><button class="ghost" id="demo">Adicionar exemplos</button></section>
+    <section id="pipeline" class="board"></section>
+    <section id="leads" class="table-wrap" hidden><table><thead><tr><th>Lead</th><th>Interesse</th><th>Etapa</th><th>Próximo contato</th><th></th></tr></thead><tbody id="lead-rows"></tbody></table></section>
+    <section id="followups" class="followups" hidden></section>
+    <section id="empty" class="empty" hidden><div>◎</div><h2>Nenhum lead por aqui</h2><p>Cadastre o primeiro contato ou adicione exemplos para conhecer o CRM.</p><button class="primary" id="empty-new">Cadastrar lead</button></section>
+  </main>
+</div>
+<dialog id="lead-dialog"><form id="lead-form" method="dialog"><header><div><p>CADASTRO</p><h2 id="dialog-title">Novo lead</h2></div><button type="button" class="close" aria-label="Fechar">×</button></header><input type="hidden" name="id">
+  <div class="fields"><label>Nome*<input name="nome" required minlength="2"></label><label>WhatsApp*<input name="telefone" required inputmode="tel"></label><label>E-mail<input name="email" type="email"></label><label>Cidade<input name="cidade"></label><label>Interesse<select name="interesse"><option>Abrir empresa</option><option>Trocar de contador</option><option>Regularizar</option><option>Contabilidade mensal</option><option>Outro</option></select></label><label>Etapa<select name="status"><option value="novo">Novo</option><option value="contato">Em contato</option><option value="proposta">Proposta</option><option value="cliente">Cliente</option><option value="perdido">Perdido</option></select></label><label>Próximo contato<input name="followup" type="date"></label><label>Origem<input name="origem" placeholder="Site, indicação..."></label><label class="full">Observações<textarea name="notas" rows="4"></textarea></label></div>
+  <footer><button type="button" class="danger" id="delete" hidden>Excluir</button><span></span><button type="button" class="ghost close">Cancelar</button><button class="primary" value="save">Salvar lead</button></footer>
+</form></dialog>
+<div id="toast" role="status"></div><script type="module" src="/src.js"></script></body></html>
