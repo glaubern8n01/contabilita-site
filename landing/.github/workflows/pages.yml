@@ -28,7 +28,7 @@ jobs:
       - run: npm install
       - run: npm run build
         env:
-          VITE_FUNNEL_URL: https://glaubern8n01.github.io/contabilita-funil/
+          VITE_FUNNEL_URL: https://formulario.contabilitaassessoriacontabil.com/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
