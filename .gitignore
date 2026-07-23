@@ -1,5 +1,7 @@
 node_modules/
 dist/
+landing/dist/
+funil/dist/
 .env
 .env.*
 !.env.example

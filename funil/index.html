@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnóstico Contábil | Contabilita</title>
+  <meta name="description" content="Responda algumas perguntas e receba uma orientação inicial para o momento da sua empresa.">
+  <meta name="theme-color" content="#070d2b">
+  <link rel="icon" href="./logo-official-symbol.png">
+</head>
+<body>
+  <main>
+    <aside>
+      <img src="./logo-official-dark.png" alt="Contabilita Assessoria Contábil">
+      <div class="aside-copy">
+        <p class="eyebrow">DIAGNÓSTICO GRATUITO</p>
+        <h1>Vamos entender o momento da sua empresa.</h1>
+        <p>São perguntas rápidas para direcionar a conversa e evitar que você precise explicar tudo de novo.</p>
+      </div>
+      <div class="trust"><span>✓ Seus dados são usados apenas para este atendimento.</span><span>CRC ES-024461</span></div>
+    </aside>
+    <section>
+      <div class="topbar">
+        <button id="back" type="button" aria-label="Voltar">← Voltar</button>
+        <span id="step-label">Etapa 1 de 5</span>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+      <form id="funnel" novalidate>
+        <fieldset class="step active" data-step="1">
+          <legend>O que você precisa resolver agora?</legend>
+          <p class="helper">Escolha a opção que mais se aproxima do seu momento.</p>
+          <div class="options">
+            <label><input type="radio" name="interesse" value="Abrir empresa" required><span><b>↗</b><strong>Abrir uma empresa</strong><small>Quero começar com a estrutura certa.</small></span></label>
+            <label><input type="radio" name="interesse" value="Trocar de contador"><span><b>⇄</b><strong>Trocar de contador</strong><small>Busco mais clareza e acompanhamento.</small></span></label>
+            <label><input type="radio" name="interesse" value="Regularizar empresa"><span><b>✓</b><strong>Regularizar</strong><small>Tenho pendências ou obrigações atrasadas.</small></span></label>
+            <label><input type="radio" name="interesse" value="Contabilidade mensal"><span><b>◎</b><strong>Acompanhamento mensal</strong><small>Quero organizar a rotina da empresa.</small></span></label>
+            <label><input type="radio" name="interesse" value="Outro assunto"><span><b>+</b><strong>Outro assunto</strong><small>Minha necessidade é diferente.</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="2">
+          <legend>Qual é a situação do seu negócio?</legend>
+          <p class="helper">Isso ajuda a direcionar a análise inicial.</p>
+          <div class="options compact">
+            <label><input type="radio" name="tipo" value="Ainda não tenho CNPJ" required><span><strong>Ainda não tenho CNPJ</strong></span></label>
+            <label><input type="radio" name="tipo" value="MEI"><span><strong>Sou MEI</strong></span></label>
+            <label><input type="radio" name="tipo" value="Simples Nacional"><span><strong>Empresa do Simples Nacional</strong></span></label>
+            <label><input type="radio" name="tipo" value="Lucro Presumido ou Real"><span><strong>Lucro Presumido ou Real</strong></span></label>
+            <label><input type="radio" name="tipo" value="Não sei informar"><span><strong>Não sei informar</strong></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="3">
+          <legend>Quando você gostaria de resolver isso?</legend>
+          <p class="helper">Não se preocupe: isso não cria nenhum compromisso.</p>
+          <div class="options compact">
+            <label><input type="radio" name="prazo" value="O quanto antes" required><span><strong>O quanto antes</strong><small>Tenho urgência ou um prazo próximo.</small></span></label>
+            <label><input type="radio" name="prazo" value="Nos próximos 30 dias"><span><strong>Nos próximos 30 dias</strong></span></label>
+            <label><input type="radio" name="prazo" value="Estou pesquisando"><span><strong>Estou pesquisando</strong><small>Quero entender antes de decidir.</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="4">
+          <legend>Conte um pouco mais.</legend>
+          <p class="helper">Opcional. Uma frase já ajuda a preparar melhor o atendimento.</p>
+          <label class="text-label">Qual é sua principal dúvida ou dificuldade?
+            <textarea name="mensagem" rows="6" maxlength="700" placeholder="Ex.: tenho guias atrasadas e não sei como regularizar..."></textarea>
+          </label>
+          <label class="text-label">Sua cidade
+            <input name="cidade" autocomplete="address-level2" placeholder="Ex.: Cachoeiro de Itapemirim">
+          </label>
+        </fieldset>
+
+        <fieldset class="step" data-step="5">
+          <legend>Para onde enviamos a orientação?</legend>
+          <p class="helper">A conversa seguirá pelo WhatsApp.</p>
+          <div class="fields">
+            <label>Seu nome<input name="nome" autocomplete="name" minlength="2" required placeholder="Como podemos chamar você?"></label>
+            <label>WhatsApp<input name="telefone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(28) 99999-9999"></label>
+            <label>E-mail <small>(opcional)</small><input name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br"></label>
+          </div>
+          <label class="consent"><input type="checkbox" name="consentimento" required><span>Autorizo a Contabilita a entrar em contato sobre esta solicitação e declaro estar de acordo com a <a href="../privacidade.html" target="_blank">Política de Privacidade</a>.</span></label>
+        </fieldset>
+
+        <div class="error" id="error" role="alert"></div>
+        <button class="next" id="next" type="button">Continuar <span>→</span></button>
+      </form>
+
+      <div class="success" id="success" hidden>
+        <div class="checkmark">✓</div>
+        <p class="eyebrow">TUDO CERTO</p>
+        <h2>Seu diagnóstico está pronto para começar.</h2>
+        <p>Clique abaixo para enviar as respostas à equipe da Contabilita pelo WhatsApp.</p>
+        <a id="whatsapp" href="#" target="_blank" rel="noopener">Enviar no WhatsApp <span>→</span></a>
+        <button id="restart" type="button">Refazer diagnóstico</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/src.js"></script>
+</body>
+</html>
