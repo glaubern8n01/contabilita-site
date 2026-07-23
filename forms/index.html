@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Diagnóstico Interativo | Contabilita</title>
+  <meta name="description" content="Uma experiência rápida para entender o momento da sua empresa.">
+  <meta name="theme-color" content="#f4f0e7"><link rel="icon" href="./logo-official-symbol.png">
+</head>
+<body>
+  <header><img src="./logo-official-light.png" alt="Contabilita Assessoria Contábil"><div class="head-progress"><span id="step-text">Começar</span><i><b id="progress"></b></i></div></header>
+  <main>
+    <form id="conversation" novalidate>
+      <section class="screen active intro" data-screen="0"><div class="question"><p class="kicker">DIAGNÓSTICO CONTÁBIL INTERATIVO</p><h1>Vamos encontrar o próximo passo para sua empresa?</h1><p class="description">Uma conversa rápida, simples e sem compromisso. Você responde no seu ritmo e chega ao WhatsApp com tudo organizado.</p><div class="intro-meta"><span>Leva cerca de 2 minutos</span><span>Seus dados ficam protegidos</span></div><button class="primary" type="button" data-next>Começar agora <em>↵</em></button><small>pressione Enter ↵</small></div><div class="visual"><span></span><img src="./logo-official-symbol.png" alt="" aria-hidden="true"><p><strong>6+</strong> anos cuidando de empresas</p></div></section>
+      <section class="screen" data-screen="1"><div class="question"><p class="number"><span>1</span> →</p><h2>Como podemos chamar você?</h2><p class="description">Assim a conversa fica mais pessoal.</p><label class="line"><small>Digite seu primeiro nome...</small><input name="nome" autocomplete="given-name" minlength="2" required></label><button class="primary" type="button" data-next>OK <em>↵</em></button><p class="error" role="alert"></p></div></section>
+      <section class="screen" data-screen="2"><div class="question"><p class="number"><span>2</span> →</p><h2><mark data-name>Perfeito</mark>, o que você precisa resolver agora?</h2><p class="description">Escolha a opção que mais combina com seu momento.</p><div class="choices">
+        <label><input type="radio" name="interesse" value="Abrir empresa" required><span><kbd>A</kbd><strong>Abrir uma empresa</strong><i>Quero começar do jeito certo</i></span></label>
+        <label><input type="radio" name="interesse" value="Trocar de contador"><span><kbd>B</kbd><strong>Trocar de contador</strong><i>Busco mais clareza e proximidade</i></span></label>
+        <label><input type="radio" name="interesse" value="Regularizar"><span><kbd>C</kbd><strong>Regularizar meu negócio</strong><i>Tenho pendências para resolver</i></span></label>
+        <label><input type="radio" name="interesse" value="Acompanhamento mensal"><span><kbd>D</kbd><strong>Contabilidade mensal</strong><i>Quero uma rotina organizada</i></span></label>
+        <label><input type="radio" name="interesse" value="Outro"><span><kbd>E</kbd><strong>Outro assunto</strong><i>Minha necessidade é diferente</i></span></label>
+      </div><p class="error" role="alert"></p></div></section>
+      <section class="screen" data-screen="3"><div class="question"><p class="number"><span>3</span> →</p><h2>Em qual cenário seu negócio está hoje?</h2><p class="description">Se não souber, tudo bem — escolha a última opção.</p><div class="choices grid">
+        <label><input type="radio" name="tipo" value="Ainda não tenho CNPJ" required><span><kbd>A</kbd><strong>Ainda não tenho CNPJ</strong></span></label>
+        <label><input type="radio" name="tipo" value="MEI"><span><kbd>B</kbd><strong>Sou MEI</strong></span></label>
+        <label><input type="radio" name="tipo" value="Simples Nacional"><span><kbd>C</kbd><strong>Simples Nacional</strong></span></label>
+        <label><input type="radio" name="tipo" value="Lucro Presumido ou Real"><span><kbd>D</kbd><strong>Lucro Presumido ou Real</strong></span></label>
+        <label><input type="radio" name="tipo" value="Não sei informar"><span><kbd>E</kbd><strong>Não sei informar</strong></span></label>
+      </div><p class="error" role="alert"></p></div></section>
+      <section class="screen" data-screen="4"><div class="question"><p class="number"><span>4</span> →</p><h2>Qual é a urgência dessa decisão?</h2><div class="choices short">
+        <label><input type="radio" name="prazo" value="O quanto antes" required><span><kbd>A</kbd><strong>O quanto antes</strong></span></label>
+        <label><input type="radio" name="prazo" value="Nos próximos 30 dias"><span><kbd>B</kbd><strong>Nos próximos 30 dias</strong></span></label>
+        <label><input type="radio" name="prazo" value="Estou pesquisando"><span><kbd>C</kbd><strong>Estou pesquisando primeiro</strong></span></label>
+      </div><p class="error" role="alert"></p></div></section>
+      <section class="screen" data-screen="5"><div class="question"><p class="number"><span>5</span> →</p><h2>Quer deixar algum contexto para nossa equipe?</h2><p class="description">Opcional — uma frase já ajuda bastante.</p><label class="line"><small>Sua principal dúvida</small><textarea name="mensagem" maxlength="700" rows="3" placeholder="Conte brevemente..."></textarea></label><label class="line compact"><small>Sua cidade</small><input name="cidade" autocomplete="address-level2" placeholder="Ex.: Cachoeiro de Itapemirim"></label><button class="primary" type="button" data-next>Continuar <em>↵</em></button></div></section>
+      <section class="screen" data-screen="6"><div class="question"><p class="number"><span>6</span> →</p><h2>Por último, qual é o seu WhatsApp?</h2><p class="description">Usaremos somente para continuar este atendimento.</p><label class="line"><small>WhatsApp com DDD</small><input name="telefone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="(28) 99999-9999"></label><label class="line compact"><small>E-mail (opcional)</small><input name="email" type="email" autocomplete="email" placeholder="voce@empresa.com.br"></label><label class="consent"><input type="checkbox" name="consentimento" required><span>Autorizo o contato e concordo com a <a href="https://contabilitaassessoriacontabil.com/privacidade.html" target="_blank">Política de Privacidade</a>.</span></label><button class="primary" type="button" id="finish">Ver meu direcionamento <em>↵</em></button><p class="error" role="alert"></p></div></section>
+    </form>
+    <section class="screen result" id="result" hidden><div class="question"><div class="success">✓</div><p class="kicker">RESPOSTAS ORGANIZADAS</p><h2>Pronto, <mark data-result-name>empreendedor</mark>. Vamos continuar?</h2><p class="description">Seu cenário já está resumido. Agora envie pelo WhatsApp para a equipe da Contabilita analisar.</p><div class="summary" id="summary"></div><a class="primary whatsapp" id="whatsapp" href="#" target="_blank" rel="noopener">Enviar no WhatsApp <em>→</em></a><button class="restart" type="button" id="restart">Refazer respostas</button></div></section>
+  </main>
+  <nav class="controls" aria-label="Navegação"><button id="previous" type="button" aria-label="Pergunta anterior">↑</button><button id="next" type="button" aria-label="Próxima pergunta">↓</button></nav>
+  <script type="module" src="/src.js"></script>
+</body></html>

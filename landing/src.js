@@ -3,6 +3,7 @@ import './style.css';
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const link = document.querySelector('#funnel-link');
+const formsLink = document.querySelector('#forms-link');
 const funnelUrl = import.meta.env.VITE_FUNNEL_URL;
 if (funnelUrl) link.href = funnelUrl;
 
@@ -13,4 +14,9 @@ if ([...params].length) {
     if (params.get(key)) target.searchParams.set(key, params.get(key));
   });
   link.href = target.toString();
+  const formsTarget = new URL(formsLink.href, location.href);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach((key) => {
+    if (params.get(key)) formsTarget.searchParams.set(key, params.get(key));
+  });
+  formsLink.href = formsTarget.toString();
 }

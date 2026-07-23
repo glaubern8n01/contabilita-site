@@ -2,6 +2,7 @@ node_modules/
 dist/
 landing/dist/
 funil/dist/
+forms/dist/
 .env
 .env.*
 !.env.example

@@ -7,6 +7,7 @@ O repositório contém três aplicações independentes:
 | Site institucional | raiz | `npm run build` | `www` |
 | Landing page | `landing/` | `npm run build --prefix landing` | `diagnostico` ou `comece` |
 | Funil de formulário | `funil/` | `npm run build --prefix funil` | `form` ou `atendimento` |
+| Formulário interativo | `forms/` | `npm run build --prefix forms` | `forms` |
 
 Cada aplicação gera sua própria pasta `dist` e pode ser conectada separadamente a uma hospedagem.
 
